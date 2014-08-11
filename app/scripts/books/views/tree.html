@@ -1,0 +1,28 @@
+<div class="row">
+  <span class="col-md-3" ng-bind="data.content"></span>
+
+  <div class="col-md-6" class="animation" class="icons" ng-hide="data.adding_category || !data.show_menu">
+    <a ng-click="data.adding_category = true;">
+      <span class="glyphicon glyphicon-plus"></span>
+    </a>
+    <a ng-click="remove_category(data)">
+      <span class="glyphicon glyphicon-minus"></span>
+    </a>
+    <a ng-click="data.adding_category = true;">
+      <span class="glyphicon glyphicon-chevron-up"></span>
+    </a>
+    <a ng-click="data.adding_category = true;">
+      <span class="glyphicon glyphicon-chevron-down"></span>
+    </a>
+  </div>
+
+  <div class="col-md-6" ng-show="data.adding_category">
+    <input type="text" ng-model="new_category_name">
+    <a ng-click="add_category(data,new_category_name);new_category_name = ''"><span class="glyphicon glyphicon-plus"></span></a>
+  </div>
+</div>
+<ul>
+  <li class="animation" ng-repeat="data in data.children" ng-include="'scripts/books/views/tree.html'" ng-mouseover="data.show_menu = true" ng-mouseleave="data.show_menu = false">
+
+  </li>
+</ul>

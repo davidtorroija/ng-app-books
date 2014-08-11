@@ -1,0 +1,46 @@
+<div class="page-header">
+  <div class="pull-right">
+    <a ng-href="#/movies/edit/{{movie.id}}" class="btn btn-sm btn-yellow">
+      <i class="icon-magic bigger-120"></i>
+      <span class="bigger-110">Edit</span>
+    </a>
+  </div>
+
+  <h1>
+    {{movie.name}}
+    <small>
+      <i class="icon-double-angle-right"></i>
+      ({{movie.year}})
+    </small>
+  </h1>
+</div><!-- /.page-header -->
+
+<div class="row">
+  <div class="col-xs-12">
+    <div class="align-left">
+      <div class="col-xs-4">
+          <img ng-src="{{movie.imageURL}}">
+      </div>
+      <div class="col-xs-6">
+          <span>Actors:</span>
+          <div ng-repeat="actor in movie.actors">
+              <a class="inline" ng-href="#/actors/{{actor.id}}">
+                {{actor.fullName}}
+              </a>
+              <span ng-show="!$last">, </span>
+          </div>
+          <div>Director: {{movie.directorName}}</div>
+          <div>Rating: {{movie.rating}}</div>
+          <span>Genre:</span>
+          <div ng-repeat="genre in movie.genre">
+              <a class="inline" ng-href="#/genres/{{genre}}">
+                {{genre}}
+              </a>
+              <span ng-show="!$last">, </span>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

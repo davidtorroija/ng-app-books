@@ -1,0 +1,77 @@
+<div class="page-header">
+  <div class="pull-right">
+    <a ng-href="#/movies/{{movie.id}}" class="btn btn-sm btn-yellow">
+      <i class="icon-magic bigger-120"></i>
+      <span class="bigger-110">Back</span>
+    </a>
+  </div>
+  <h1>
+    {{movie.name}}
+    <small>
+      <i class="icon-double-angle-right"></i>
+      ({{movie.year}})
+    </small>
+  </h1>
+</div><!-- /.page-header -->
+
+<div class="row">
+  <div class="col-xs-12">
+    <div class="align-left">
+      <div class="col-xs-4">
+          <img ng-src="{{movie.imageURL}}">
+      </div>
+      <div class="col-xs-6">
+          <div class="row">
+            <label class="col-xs-4 control-label" for="textinput">Director</label>
+            <div class="col-xs-8">
+              <input id="textinput" ng-model="movie.directorName" name="textinput" type="text" placeholder="Director's Full Name" class="form-control input-md" required="">
+            </div>
+          </div>
+          <div class="row top-space-5">
+            <label class="col-xs-4 control-label" for="textinput">Rating</label>
+            <div class="col-xs-8">
+               <rating class="yellow" ng-model="movie.rating" max="10" readonly="false"></rating>
+            <span class="label" ng-class="{'label-warning': movie.rating<3, 'label-info': movie.rating>=3 && movie.rating<7, 'label-success': movie.rating>=7}">{{movie.rating}}</span>
+            </div>
+          </div>
+          <div class="row top-space-5">
+            <label class="col-xs-4 control-label" for="textinput">Actors</label>
+            <div class="col-xs-8">
+               <select multiple
+                chosen
+                ng-model="movie.actors"
+                ng-options="actor.id as actor.fullName for actor in actors">
+                <option value=""></option>
+              </select>
+            </div>
+          </div>
+          <div class="row top-space-5">
+            <label class="col-xs-4 control-label" for="textinput">Genre</label>
+            <div >
+               <select multiple class="col-md-8" style="width:200px"
+                chosen
+                ng-model="movie.genre"
+                ng-options="genre for genre in genres">
+                <option value=""></option>
+              </select>
+            </div>
+          </div>
+
+          <hr/>
+          <div class="row top-space-5">
+            <div class="col-xs-2">
+              <button class="btn btn-info" ng-click="save()">Save</button>
+            </div>
+            <div class="col-xs-4">
+             <a class="btn btn-danger" ng-href="#/movies/{{movie.id}}">Cancel</a>
+            </div>
+          </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
