@@ -1,13 +1,6 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name moviecityApp.controller:MainCtrl
- * @description
- * # MoviesCtrl
- * Controller of the moviecityApp
- */
- angular.module('moviecityApp')
+ angular.module('booksApp')
  .controller('BooksCtrl', function ($scope) {
 
   $scope.selected_book = {

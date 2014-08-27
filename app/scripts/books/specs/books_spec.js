@@ -2,7 +2,7 @@ describe('books specs', function() {
   var ctrl,
   scope;
 
-  beforeEach(module('moviecityApp'));
+  beforeEach(module('booksApp'));
 
   var selected_book = {
     content: 'Pepe',
@@ -187,7 +187,7 @@ describe('books specs', function() {
     }
     scope.move_up(category);
 
-    expect(scope.selected_book.children).toBe(category);
+    expect(scope.selected_book.children).toEqual(category);
   });
 
 });
