@@ -21,7 +21,7 @@
     <!-- Custom Fonts -->
     <link href="styles/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   </head>
-  <body ng-app="booksApp">
+  <body ng-app="BooksApp">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -44,7 +44,18 @@
                     <ul class="nav" id="side-menu">
                         <li class="sidebar-search">
                             <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Search...">
+                                <input type="text" class="form-control" placeholder="Nombre del Libro" ng-model="newBookName">
+                                <span class="input-group-btn">
+                                  <button ng-click="addBook(newBookName)" class="btn btn-default" type="button">
+                                      <i class="fa fa-plus"></i>
+                                  </button>
+                                </span>
+                            </div>
+                            <!-- /input-group -->
+                        </li>
+                        <li class="sidebar-search">
+                            <div class="input-group custom-search-form">
+                                <input type="text" class="form-control" placeholder="Search..." ng-model="search">
                                 <span class="input-group-btn">
                                 <button class="btn btn-default" type="button">
                                     <i class="fa fa-search"></i>
@@ -55,9 +66,12 @@
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-book fa-fw"></i> Books<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level collapse">
-                                <li ng-repeat="book in books">
-                                    <a ng-href="#/books/{{book.id}}">{{book.content}}</a>
+                            <ul class="nav nav-second-level expanded">
+                                <li ng-repeat="book in books | filter: search">
+                                    <a class="col-md-8" ng-href="#/books/{{book.id}}">{{book.content}}</a>
+                                    <a ng-click="removeBook($index)" href="#" class="col-md-2 text-center">
+                                      <span class="red-color glyphicon glyphicon-trash"></span>
+                                    </a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -74,7 +88,7 @@
         </div>
 
       <div class="footer">
-        David Torroija
+        David Torroija(I love you)
       </div>
     </div>
 
@@ -127,24 +141,12 @@
         <script src="scripts/core/model/initializeLocalStorage.js"></script>
 
         <script src="scripts/app.js"></script>
-        <script src="scripts/main/controllers/main.js"></script>
-        <script src="scripts/books/controllers/book_list.js"></script>
-
-        <script src="scripts/movies/module.js"></script>
-        <script src="scripts/movies/movieModel.js"></script>
-        <script src="scripts/movies/controllers/movies.js"></script>
-
-        <script src="scripts/genres/module.js"></script>
-        <script src="scripts/genres/genreModel.js"></script>
-
-        <script src="scripts/actors/module.js"></script>
-        <script src="scripts/actors/actorModel.js"></script>
 
         <script src="scripts/books/module.js"></script>
         <script src="scripts/books/bookModel.js"></script>
+        <script src="scripts/books/controllers/book_list.js"></script>
         <script src="scripts/books/controllers/books.js"></script>
 
-        <script src="scripts/movies/controllers/moviesEdit.js"></script>
         <!-- endbuild -->
 </body>
 </html>

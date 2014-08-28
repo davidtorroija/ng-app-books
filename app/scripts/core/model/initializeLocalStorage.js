@@ -2,52 +2,116 @@
 
 angular.module('Model')
 .factory('initializeLocalStorage', function($localStorage) {
-
-  var movies = [{
-    id: 1,
-    name:'The Terminator',
-    releaseYear: new Date('1985/08/26'),
-    grossIncome:38400000,
-    actors:[
-      {
-        id:1,
-        fullName:'Arnold Schwarzenegger',
-        birthdate:'1955/5/5',
-        movies: [{name:'True Lies',id:2}],
-      },
-      {
-        id:2,
-        fullName:'Linda Hamilton',
-        birthdate:'1955/5/5',
-        movies: [{name:'Song',id:3}],
-      }
-    ],
-    directorName: 'James Cameron',
-    rating: 8.1,
-    genre: ['Action', 'Suspense', 'Sci-Fi'],
-    imageURL: 'http://ia.media-imdb.com/images/M/MV5BODE1MDczNTUxOV5BMl5BanBnXkFtZTcwMTA0NDQyNA@@._V1_SX214_AL_.jpg'
-  }];
-
-  var actors = [
-    {
-      id:1,
-      fullName:'Arnold Schwarzenegger',
-      birthdate:'1955/5/5',
-      movies: [{name:'True Lies',id:2}],
+  var books = [{
+    level: 0,
+    id: 111,
+    content: 'El libro de las maravillas',
+    children: [{
+      id: 1,
+      content: 'Introduccion',
+      level: 1,
+      order: 1,
+      id_book: 1,
+      children: []
     },
     {
-      id:2,
-      fullName:'Linda Hamilton',
-      birthdate:'1955/5/5',
-      movies: [{name:'Song',id:3}],
+      id: 2,
+      content: 'Motivacion',
+      level: 2,
+      order: 2,
+      id_book: 1
+      ,children: [
+      {
+        id: 3,
+        content: 'Reseña Historica',
+        level: 2,
+        order: 3,
+        id_book: 1
+        ,children: [
+        {
+          id: 4,
+          content: 'Epitafio',
+          level: 3,
+          order: 4,
+          id_book: 1
+          ,children: [
+          {
+            id: 5,
+            content: 'Epifania',
+            level: 4,
+            order: 5,
+            id_book: 1
+            ,children: []
+          }]
+        }]
+      },
+      ]
+    },
+    {
+      'id': '2',
+      'content': 'Motivacion',
+      'level': '1',
+      'order': '12',
+      'id_book': '1'
+      ,children: []
     }
+    ]
+  },
+  {
+    level: 0,
+    id: 222,
+    content: 'Como entregar',
+    children: [
+    {
+      id: 1,
+      content: 'I - Lorem',
+      level: 1,
+      order: 1,
+      id_book: 1,
+      children: []
+    },
+    {
+      id: 2,
+      content: 'II - Ipsum',
+      level: 2,
+      order: 2,
+      id_book: 1
+      ,children: [
+      {
+        id: 3,
+        content: 'III - Ipsum',
+        level: 2,
+        order: 3,
+        id_book: 1
+        ,children: [
+        {
+          id: 4,
+          content: 'IV - Atreyu',
+          level: 3,
+          order: 4,
+          id_book: 1
+          ,children: [
+          {
+            id: 5,
+            content: 'V - Si tuviera alma',
+            level: 4,
+            order: 5,
+            id_book: 1
+            ,children: []
+          }]
+        }]
+      },
+      ]
+    },
+    ]
+  }
   ];
-  var genres = ['Action', 'Suspense', 'Sci-Fi', 'Drama', 'Fantasy'];
+  $localStorage.books = $localStorage.books || books;
 
-  $localStorage.movies = $localStorage.movies || movies;
-  $localStorage.actors = $localStorage.actors || actors;
-  $localStorage.genres = $localStorage.genre || genres;
-
-  console.log('asd');
+  return{
+    resetDatabase : function(){
+      $localStorage.books = books;
+    }
+  }
 
 });

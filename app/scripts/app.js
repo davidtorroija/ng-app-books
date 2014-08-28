@@ -1,6 +1,6 @@
 'use strict';
 angular
-  .module('booksApp', [
+  .module('BooksApp', [
     'ngAnimate',
     'ngRoute',
     'ui.bootstrap',
@@ -8,26 +8,13 @@ angular
   ])
   .config(function ($routeProvider) {
     $routeProvider
-      // .when('/movies/:idMovie', {
-      //   templateUrl: 'scripts/movies/views/movie.html',
-      //   controller: 'MoviesCtrl',
-      //   resolve: {
-      //     movie: function($location,$route,movieModel) {
-      //       var id = $route.current.params.idMovie;
-      //       return movieModel.getById(id)
-      //       .catch(function() {
-      //         $location.path('/');
-      //       });
-      //     },
-      //   }
-      // })
-      .when('/', {
+       .when('/books/:bookId', {
         templateUrl: 'scripts/books/views/book.html',
         controller: 'BooksCtrl',
         resolve: {
-          movie: function($location,$route,movieModel) {
-            var id = $route.current.params.idMovie;
-            return movieModel.getById(id)
+          book: function($location,$route,bookModel) {
+            var id = $route.current.params.bookId;
+            return bookModel.getById(id)
             .catch(function() {
               $location.path('/');
             });

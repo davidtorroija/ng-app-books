@@ -34,7 +34,9 @@ module.exports = function(config) {
       'app/scripts/books/module.js',
       'app/scripts/books/bookModel.js',
       'app/scripts/books/controllers/books.js',
+      'app/scripts/books/controllers/book_list.js',
       'app/scripts/books/specs/books_spec.js',
+      'app/scripts/books/specs/bookList_spec.js',
     ],
 
     // list of files / patterns to exclude

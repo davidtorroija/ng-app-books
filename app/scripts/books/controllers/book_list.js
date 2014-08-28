@@ -1,103 +1,37 @@
 'use strict';
 
- angular.module('booksApp')
- .controller('BookListCtrl', function ($scope) {
+ angular.module('BooksApp')
+ .controller('BookListCtrl', function ($scope,bookModel) {
 
-  $scope.books = [{
-    level: 0,
-    content: 'Pepe',
-    children: [
-    {
-      "id": "1",
-      "content": "Introduccion",
-      "level": "1",
-      "order": "1",
-      "id_book": "1",
-      children: []
-    },
-    {
-      "id": "2",
-      "content": "Motivacion",
-      "level": "2",
-      "order": "2",
-      "id_book": "1"
-      ,children: [
-      {
-        "id": "3",
-        "content": "Reseña Historica",
-        "level": "2",
-        "order": "3",
-        "id_book": "1"
-        ,children: [
-        {
-          "id": "4",
-          "content": "Level 3",
-          "level": "3",
-          "order": "4",
-          "id_book": "1"
-          ,children: [
-          {
-            "id": "5",
-            "content": "Level 4",
-            "level": "4",
-            "order": "5",
-            "id_book": "1"
-            ,children: []
-          }]
-        }]
-      },
-      ]
-    },
-    ]
-  },
-  {
-    level: 0,
-    content: 'Historial Mundial',
-    children: [
-    {
-      "id": "1",
-      "content": "Introduccion",
-      "level": "1",
-      "order": "1",
-      "id_book": "1",
-      children: []
-    },
-    {
-      "id": "2",
-      "content": "Motivacion",
-      "level": "2",
-      "order": "2",
-      "id_book": "1"
-      ,children: [
-      {
-        "id": "3",
-        "content": "Reseña Historica",
-        "level": "2",
-        "order": "3",
-        "id_book": "1"
-        ,children: [
-        {
-          "id": "4",
-          "content": "Level 3",
-          "level": "3",
-          "order": "4",
-          "id_book": "1"
-          ,children: [
-          {
-            "id": "5",
-            "content": "Level 4",
-            "level": "4",
-            "order": "5",
-            "id_book": "1"
-            ,children: []
-          }]
-        }]
-      },
-      ]
-    },
-    ]
+  function loadBooks(){
+    return bookModel
+    .get()
+    .then(function(data){
+      $scope.books = data;
+    });
   }
-  ];
+
+  $scope.addBook = function(newBookName) {
+
+    $scope.books.push({
+      content: newBookName,
+      children: [],
+      id : _($scope.books).max(function(book){ return book.id; }).id +1,
+      level : 1,
+      order : 1,
+    });
+
+    $scope.newBookName = '';
+  };
+
+  $scope.removeBook = function(index) {
+
+    $scope.books.splice(index,1);
+
+    $scope.newBookName = '';
+  };
+
+  loadBooks();
 
 });
 
