@@ -3,16 +3,7 @@
  angular.module('BooksApp')
  .controller('BookListCtrl', function ($scope,bookModel) {
 
-  function loadBooks(){
-    return bookModel
-    .get()
-    .then(function(data){
-      $scope.books = data;
-    });
-  }
-
   $scope.addBook = function(newBookName) {
-
     $scope.books.push({
       content: newBookName,
       children: [],
@@ -25,11 +16,17 @@
   };
 
   $scope.removeBook = function(index) {
-
     $scope.books.splice(index,1);
-
     $scope.newBookName = '';
   };
+
+  function loadBooks(){
+    return bookModel
+    .get()
+    .then(function(data){
+      $scope.books = data;
+    });
+  }
 
   loadBooks();
 

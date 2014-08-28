@@ -180,7 +180,6 @@ describe('books specs', function() {
       'id_book': '1'
       ,children: []
     }
-    // console.log(JSON.stringify(scope.selectedBook,null,' '));
     scope.moveUp(1,category);
     expect(scope.selectedBook.children[0]).toEqual(category);
   });
@@ -223,6 +222,12 @@ describe('books specs', function() {
     scope.moveDown(0,category);
 
     expect(scope.selectedBook.children[1]).toEqual(category);
+  });
+
+  it('Should add Category at level 0 with empty children', function() {
+    scope.addCategory(scope.selectedBook,'new Category');
+
+    expect(scope.selectedBook.children[2].content).toBe('new Category');
   });
 
 });
