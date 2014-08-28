@@ -139,7 +139,7 @@ describe('books specs', function() {
       };
 
     scope.removeCategory(category);
-    // expect(scope.selectedBook.children.length).toBe(2);
+    expect(scope.selectedBook.children.length).toBe(1);
   });
 
   it('Should remove element from childrens array', function() {
@@ -168,7 +168,7 @@ describe('books specs', function() {
       }]
     };
     scope.removeCategory(category);
-    // expect(scope.selectedBook.children[1].children.length).toBe(0);
+    expect(scope.selectedBook.children[1].children.length).toBe(0);
   });
 
   it('Should move up element from childrens array', function() {
